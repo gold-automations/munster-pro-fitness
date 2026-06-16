@@ -63,7 +63,7 @@
 
     #desktop-nav-links { display: flex; gap: 36px; align-items: center; }
     #desktop-nav-links a {
-      color: #888; text-decoration: none; font-size: 11px; font-weight: 500;
+      color: #888; text-decoration: none; font-size: 13px; font-weight: 500;
       letter-spacing: 2px; text-transform: uppercase;
     }
     #desktop-nav-links a:hover { color: #f0f0f0; }
@@ -628,7 +628,7 @@
   </div>
   <div class="hero-content">
     <div class="hero-text">
-      <p class="hero-eyebrow">Burlington · Co. Clare · Ireland</p>
+      <p class="hero-eyebrow">Burlington · Co. Clare</p>
       <div class="hero-headline">
         <div class="white">WHERE</div>
         <div class="orange" style="font-family:'College',sans-serif">PROS</div>
@@ -642,7 +642,7 @@
     </div>
   </div>
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Members</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Machines</div></div>
     <div class="stat"><div class="stat-num">7</div><div class="stat-label">Days a Week</div></div>
     <div class="stat"><div class="stat-num">6AM</div><div class="stat-label">Opens Weekdays</div></div>
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Committed</div></div>
@@ -1087,6 +1087,7 @@
       drift:   (Math.random() - 0.5) * 0.28,
     }));
 
+    let animFrame;
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
@@ -1111,9 +1112,17 @@
           p.drift  = (Math.random() - 0.5) * 0.28;
         }
       });
-      requestAnimationFrame(draw);
+      animFrame = requestAnimationFrame(draw);
     }
     draw();
+
+    // Restart animation when returning to the tab
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        cancelAnimationFrame(animFrame);
+        draw();
+      }
+    });
   })();
 
   /* ── INIT ── */
