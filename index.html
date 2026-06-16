@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Munster Pro Fitness — Burlington, Co. Clare</title>
+  <meta name="description" content="Munster's premier fitness facility. Fully equipped, open 7 days. Built for those who take their training seriously.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/college" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #080808;
+      color: #f0f0f0;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: #F07C1E; border-radius: 2px; }
+    ::selection { background: #F07C1E; color: #000; }
+    input::placeholder { color: #3a3a3a; }
+    input:focus { border-color: #F07C1E !important; outline: none; }
+    a { transition: color 0.2s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(44px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes perspGrid {
+      from { background-position: 0 0; }
+      to   { background-position: 0 90px; }
+    }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px; display: flex; align-items: center;
+      padding: 0 48px; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    #nav.scrolled {
+      background: rgba(6,6,6,0.97);
+      border-bottom-color: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 54px; width: 54px; object-fit: contain; display: block; }
+    .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2.5px; color: #f0f0f0; white-space: nowrap; }
+    .nav-logo-text span { color: #F07C1E; }
+
+    #desktop-nav-links { display: flex; gap: 36px; align-items: center; }
+    #desktop-nav-links a {
+      color: #888; text-decoration: none; font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    #desktop-nav-links a:hover { color: #f0f0f0; }
+
+    .nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    #nav-cta {
+      background: #F07C1E; color: #000; text-decoration: none;
+      padding: 10px 22px; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; border-radius: 2px;
+      transition: background 0.2s;
+    }
+    #nav-cta:hover { background: #FF9030; }
+    #hamburger {
+      display: none; background: none; border: none; color: #f0f0f0;
+      cursor: pointer; align-items: center; justify-content: center; padding: 6px; line-height: 0;
+    }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(8,8,8,0.98);
+      flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      backdrop-filter: blur(8px);
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-close {
+      position: absolute; top: 20px; right: 26px;
+      background: none; border: none; color: #666; font-size: 28px; cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    #mobile-close:hover { color: #f0f0f0; }
+    .mobile-link {
+      font-family: 'Bebas Neue', sans-serif; font-size: 52px; letter-spacing: 3px;
+      color: #f0f0f0; text-decoration: none; padding: 6px 0; transition: color 0.2s;
+    }
+    .mobile-link:hover { color: #F07C1E; }
+    .mobile-cta {
+      background: #F07C1E; color: #000; text-decoration: none;
+      padding: 15px 52px; font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; margin-top: 20px;
+    }
+
+    /* ── HERO ── */
+    #home {
+      position: relative; height: 100vh; min-height: 640px;
+      display: flex; flex-direction: column; justify-content: center;
+      overflow: hidden; background: #080808;
+    }
+    #hero-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-grid {
+      position: absolute; bottom: 0; left: -40%; right: -40%; height: 58%;
+      background-image:
+        linear-gradient(rgba(240,124,30,0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,124,30,0.07) 1px, transparent 1px);
+      background-size: 90px 90px;
+      transform: perspective(320px) rotateX(68deg);
+      transform-origin: bottom center;
+      animation: perspGrid 2.8s linear infinite;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-horizon {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 58%;
+      background: linear-gradient(to bottom, #080808 0%, transparent 45%);
+      pointer-events: none; z-index: 1;
+    }
+    .hero-glow {
+      position: absolute; bottom: -120px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(240,124,30,0.18) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 45%, transparent 35%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none; z-index: 1;
+    }
+    .hero-edge {
+      position: absolute; top: 0; right: 0; width: 3px; height: 100%;
+      background: linear-gradient(to bottom, transparent 5%, #F07C1E 25%, #F07C1E 75%, transparent 95%);
+      pointer-events: none; z-index: 2;
+    }
+    #hero-image-wrapper {
+      position: absolute; top: 68px; right: 0;
+      width: 65%; height: calc(100% - 68px - 80px);
+      z-index: 2; pointer-events: none;
+    }
+    #hero-image-wrapper img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+    }
+    .hero-content {
+      position: absolute; top: 97px; left: 208px; z-index: 5;
+      display: flex; align-items: center; pointer-events: none;
+      width: 932px; height: 555px;
+    }
+    .hero-text {
+      width: 832px; min-width: 320px; padding: 0 0 0 52px;
+      pointer-events: all; height: 481px;
+    }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: #F07C1E; font-weight: 600; margin-bottom: 22px;
+    }
+    .hero-headline div {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 7vw, 104px);
+      line-height: 0.9; letter-spacing: 4px;
+    }
+    .hero-headline .white { color: #efefef; }
+    .hero-headline .orange { color: #F07C1E; }
+    .hero-sub {
+      max-width: 420px; font-size: 16px; color: #666;
+      margin-top: 22px; margin-bottom: 34px; font-weight: 300; line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: #F07C1E; color: #000; text-decoration: none;
+      padding: 15px 40px; font-size: 12px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase; border-radius: 2px;
+      transition: background 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { background: #FF9030; color: #000; }
+    .btn-outline {
+      background: transparent; color: #efefef; text-decoration: none;
+      padding: 15px 40px; font-size: 12px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s; white-space: nowrap; display: inline-block;
+    }
+    .btn-outline:hover { border-color: #F07C1E; color: #F07C1E; }
+
+    .stats-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; background: #080808; z-index: 10;
+      animation: fadeIn 1s ease both; animation-delay: 0.9s;
+    }
+    .stat {
+      flex: 1; padding: 20px 16px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 30px;
+      color: #F07C1E; line-height: 1; letter-spacing: 1px;
+    }
+    .stat-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #444; margin-top: 4px;
+    }
+
+    /* ── SECTIONS ── */
+    .section-eyebrow {
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: #F07C1E; font-weight: 600; margin-bottom: 14px;
+    }
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 5vw, 66px);
+      line-height: 1; letter-spacing: 2px;
+    }
+
+    /* ── ABOUT ── */
+    #about { padding: 120px 0; background: #0a0a0a; }
+    .about-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 80px; align-items: center;
+    }
+    .about-desc { font-size: 16px; color: #777; line-height: 1.85; margin-bottom: 18px; }
+    .about-desc-2 { margin-bottom: 40px; }
+    .feature-list { display: flex; flex-direction: column; gap: 13px; }
+    .feature-item { display: flex; align-items: center; gap: 13px; }
+    .dot { width: 6px; height: 6px; background: #F07C1E; border-radius: 50%; flex-shrink: 0; }
+    .feature-item span { font-size: 15px; color: #bbb; }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; display: block; border-radius: 4px; position: relative; z-index: 1; }
+    .about-img-border {
+      position: absolute; bottom: -16px; left: -16px; right: 16px; top: 16px;
+      border: 2px solid rgba(240,124,30,0.28); border-radius: 4px; pointer-events: none;
+    }
+
+    /* ── MEMBERSHIPS ── */
+    #memberships { padding: 120px 0; background: #0d0d0d; }
+    .memberships-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .memberships-header { text-align: center; margin-bottom: 56px; }
+    .memberships-header .section-heading { margin: 0 0 36px; }
+    .type-toggle {
+      display: inline-flex; background: #161616; border-radius: 4px;
+      padding: 4px; border: 1px solid rgba(255,255,255,0.07);
+    }
+    .toggle-btn {
+      background: transparent; color: #666; border: none;
+      padding: 10px 30px; font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase; border-radius: 3px;
+      cursor: pointer; transition: all 0.22s; font-family: 'DM Sans', sans-serif;
+    }
+    .toggle-btn.active { background: #F07C1E; color: #000; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+    .price-card {
+      background: #141414; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px; padding: 36px 26px; position: relative;
+      transition: transform 0.22s; cursor: default;
+    }
+    .price-card:hover { transform: translateY(-6px); }
+    .price-card.best {
+      background: #F07C1E; border: 2px solid transparent;
+    }
+    .best-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: #000; color: #F07C1E; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 20px;
+      border: 1px solid rgba(240,124,30,0.4); white-space: nowrap;
+      display: none;
+    }
+    .price-card.best .best-badge { display: block; }
+    .price-period {
+      color: #555; font-size: 11px; letter-spacing: 2.5px;
+      text-transform: uppercase; font-weight: 600; margin: 0 0 14px;
+    }
+    .price-card.best .price-period { color: rgba(0,0,0,0.5); }
+    .price-amount { display: flex; align-items: flex-start; gap: 2px; margin-bottom: 4px; }
+    .price-currency { font-size: 18px; font-weight: 700; margin-top: 10px; line-height: 1; color: #F07C1E; }
+    .price-card.best .price-currency { color: #000; }
+    .price-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 70px;
+      line-height: 1; color: #F07C1E; letter-spacing: -1px;
+    }
+    .price-card.best .price-num { color: #000; }
+    .price-per { color: #555; font-size: 13px; margin: 0 0 32px; min-height: 18px; }
+    .price-card.best .price-per { color: rgba(0,0,0,0.5); }
+    .price-btn {
+      width: 100%; background: #F07C1E; color: #000; border: none;
+      padding: 13px; font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; border-radius: 2px;
+      cursor: pointer; transition: opacity 0.2s; font-family: 'DM Sans', sans-serif;
+    }
+    .price-btn:hover { opacity: 0.8; }
+    .price-card.best .price-btn { background: #000; color: #fff; }
+    .pricing-note {
+      text-align: center; color: #3a3a3a; font-size: 13px; margin-top: 28px; line-height: 1.7;
+    }
+
+    /* ── CLASSES ── */
+    #classes { padding: 120px 0; background: #0a0a0a; }
+    .classes-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .classes-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 56px; flex-wrap: wrap; gap: 16px;
+    }
+    .classes-header .section-heading { margin: 0; }
+    .classes-note { color: #444; font-size: 14px; max-width: 240px; text-align: right; line-height: 1.7; }
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .class-card {
+      background: #111; border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px; overflow: hidden;
+      transition: transform 0.22s, border-color 0.25s;
+    }
+    .class-card:hover { transform: translateY(-5px); border-color: rgba(240,124,30,0.35); }
+    .class-top { height: 3px; background: #F07C1E; }
+    .class-body { padding: 28px; }
+    .class-day-badge {
+      display: inline-block;
+      background: rgba(240,124,30,0.1); border: 1px solid rgba(240,124,30,0.2);
+      color: #F07C1E; font-size: 10px; font-weight: 700;
+      letter-spacing: 2.5px; padding: 4px 12px; border-radius: 2px; margin-bottom: 16px;
+    }
+    .class-name {
+      font-family: 'Bebas Neue', sans-serif; font-size: 30px;
+      letter-spacing: 1px; margin: 0 0 12px; color: #f0f0f0;
+    }
+    .class-meta { display: flex; gap: 16px; margin-bottom: 28px; }
+    .class-meta span { font-size: 13px; color: #666; }
+    .class-meta .sep { color: #333; }
+    .class-footer { display: flex; align-items: center; justify-content: space-between; }
+    .class-spots { font-size: 12px; color: #444; }
+    .book-btn {
+      background: #F07C1E; color: #000; border: none;
+      padding: 10px 20px; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px;
+      cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+    }
+    .book-btn:hover { background: #FF9030; }
+    .classes-notice {
+      margin-top: 36px; padding: 22px 28px; background: #111;
+      border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 18px;
+    }
+    .notice-bar { width: 3px; height: 36px; background: #F07C1E; border-radius: 2px; flex-shrink: 0; }
+    .notice-title { font-size: 14px; color: #ccc; font-weight: 500; margin: 0 0 4px; }
+    .notice-text { font-size: 13px; color: #444; margin: 0; }
+    .notice-text a { color: #F07C1E; text-decoration: none; }
+    .notice-text a:hover { text-decoration: underline; color: #F07C1E; }
+
+    /* ── CONTACT ── */
+    #contact { padding: 120px 0; background: #0d0d0d; }
+    .contact-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 80px; align-items: start;
+    }
+    .contact-heading { margin: 0 0 48px; }
+    .contact-block { margin-bottom: 32px; }
+    .contact-label {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: #3a3a3a; margin-bottom: 10px;
+    }
+    .contact-address { font-size: 15px; color: #aaa; line-height: 1.9; }
+    .hours-row {
+      padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { font-size: 14px; color: #999; }
+    .hours-row .time { font-size: 14px; color: #F07C1E; font-weight: 600; }
+    .contact-links { display: flex; flex-direction: column; gap: 9px; }
+    .contact-links a { font-size: 15px; color: #aaa; text-decoration: none; }
+    .contact-links a:hover { color: #F07C1E; }
+    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-link {
+      background: #1a1a1a; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 3px; padding: 10px 18px; text-decoration: none;
+      color: #aaa; font-size: 12px; font-weight: 500; letter-spacing: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: #F07C1E; color: #F07C1E; }
+    .map-wrap {
+      border-radius: 6px; overflow: hidden; height: 480px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .map-wrap iframe {
+      border: 0; display: block; width: 100%; height: 100%;
+      filter: grayscale(100%) invert(0.88);
+    }
+
+    /* ── FAQ ── */
+    #faq { padding: 120px 0; background: #0a0a0a; }
+    .faq-inner { max-width: 740px; margin: 0 auto; padding: 0 48px; }
+    .faq-header { text-align: center; margin-bottom: 64px; }
+    .faq-header .section-heading { margin: 0; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .faq-btn {
+      width: 100%; background: none; border: none;
+      padding: 22px 0; display: flex; justify-content: space-between;
+      align-items: center; cursor: pointer; text-align: left;
+      color: #f0f0f0; font-family: 'DM Sans', sans-serif;
+      gap: 16px; transition: color 0.2s;
+    }
+    .faq-btn:hover { color: #F07C1E; }
+    .faq-q { font-size: 16px; font-weight: 500; line-height: 1.4; }
+    .faq-chevron {
+      color: #F07C1E; font-size: 22px; font-weight: 300;
+      flex-shrink: 0; line-height: 1; font-family: monospace;
+      width: 22px; text-align: center;
+    }
+    .faq-answer {
+      display: none; padding: 0 0 22px; color: #666; font-size: 15px; line-height: 1.85;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060606; border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 56px 48px 36px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 48px; flex-wrap: wrap; gap: 24px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 12px; }
+    .footer-logo img { height: 50px; width: 50px; object-fit: contain; display: block; }
+    .footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2.5px; color: #f0f0f0; }
+    .footer-logo-text span { color: #F07C1E; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a {
+      color: #3a3a3a; text-decoration: none; font-size: 12px; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #f0f0f0; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 12px; color: #2a2a2a; margin: 0; }
+    .footer-social { display: flex; gap: 20px; }
+    .footer-social a {
+      color: #2a2a2a; text-decoration: none; font-size: 12px; transition: color 0.2s;
+    }
+    .footer-social a:hover { color: #F07C1E; }
+
+    /* ── MODALS ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.84);
+      align-items: center; justify-content: center; padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #141414; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; width: 100%; max-width: 460px;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-head {
+      padding: 28px 28px 22px; border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .modal-eyebrow {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #F07C1E; font-weight: 600; margin-bottom: 8px;
+    }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 34px;
+      letter-spacing: 1px; margin: 0 0 4px; color: #f0f0f0;
+    }
+    .modal-price {
+      font-family: 'Bebas Neue', sans-serif; font-size: 30px;
+      color: #F07C1E; margin: 0; letter-spacing: 1px;
+    }
+    .modal-close {
+      background: none; border: none; color: #555; font-size: 26px;
+      cursor: pointer; padding: 0; line-height: 1; transition: color 0.2s;
+    }
+    .modal-close:hover { color: #f0f0f0; }
+    .modal-body { padding: 28px; }
+    .modal-success { padding: 52px 28px; text-align: center; }
+    .success-icon {
+      width: 60px; height: 60px; background: rgba(240,124,30,0.1);
+      border: 2px solid #F07C1E; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px; font-size: 24px; color: #F07C1E; line-height: 1;
+    }
+    .success-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 40px;
+      letter-spacing: 1px; margin: 0 0 12px; color: #f0f0f0;
+    }
+    .success-text { color: #666; font-size: 15px; line-height: 1.85; margin: 0 0 30px; }
+    .modal-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-label {
+      display: block; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; color: #444; margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%; background: #1c1c1c; border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 3px; padding: 12px 14px; color: #f0f0f0;
+      font-size: 14px; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s;
+    }
+    .form-note { font-size: 12px; color: #3a3a3a; margin: 16px 0 4px; line-height: 1.7; }
+    .form-submit {
+      width: 100%; background: #F07C1E; color: #000; border: none;
+      padding: 15px; font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; border-radius: 2px;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      margin-top: 8px; transition: background 0.2s;
+    }
+    .form-submit:hover { background: #FF9030; }
+
+    /* Purpose toggle inside modal */
+    .purpose-toggle {
+      display: flex; background: #1a1a1a; border-radius: 3px;
+      padding: 3px; border: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 22px;
+    }
+    .purpose-btn {
+      flex: 1; background: transparent; color: #666; border: none;
+      padding: 9px; font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; border-radius: 2px;
+      cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    }
+    .purpose-btn.active { background: #F07C1E; color: #000; }
+    .purpose-section-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #444; margin-bottom: 10px;
+    }
+
+    /* Class modal day badge */
+    .class-modal-badge {
+      display: inline-block; background: rgba(240,124,30,0.1);
+      border: 1px solid rgba(240,124,30,0.2); color: #F07C1E;
+      font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+      padding: 4px 12px; border-radius: 2px; margin-bottom: 12px;
+    }
+    .class-modal-sub { color: #444; font-size: 13px; margin: 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      #desktop-nav-links { display: none !important; }
+      #nav-cta { display: none !important; }
+      #hamburger { display: flex !important; }
+      #hero-image-wrapper { display: none !important; }
+      #nav { padding: 0 24px; }
+      .hero-content { left: 0; width: 100%; padding: 0 24px; }
+      .hero-text { padding: 0; width: 100%; }
+      .about-inner, .memberships-inner, .classes-inner, .contact-inner, .faq-inner { padding: 0 24px; }
+      footer { padding: 48px 24px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="#home" class="nav-logo">
+    <img src="uploads/logo-hires.png" alt="Munster Pro Fitness">
+    <span class="nav-logo-text">MUNSTER <span>PRO</span> FITNESS</span>
+  </a>
+  <div id="desktop-nav-links">
+    <a href="#about">About</a>
+    <a href="#memberships">Memberships</a>
+    <a href="#classes">Classes</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a id="nav-cta" href="#memberships">JOIN NOW</a>
+    <button id="hamburger" aria-label="Open menu" onclick="openMobileMenu()">
+      <svg width="20" height="14" viewBox="0 0 20 14">
+        <rect y="0" width="20" height="2" rx="1" fill="currentColor"/>
+        <rect y="6" width="20" height="2" rx="1" fill="currentColor"/>
+        <rect y="12" width="20" height="2" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<div id="mobile-menu" role="dialog" aria-modal="true">
+  <button id="mobile-close" onclick="closeMobileMenu()" aria-label="Close menu">×</button>
+  <a href="#about"       class="mobile-link" onclick="closeMobileMenu()">ABOUT</a>
+  <a href="#memberships" class="mobile-link" onclick="closeMobileMenu()">MEMBERSHIPS</a>
+  <a href="#classes"     class="mobile-link" onclick="closeMobileMenu()">CLASSES</a>
+  <a href="#contact"     class="mobile-link" onclick="closeMobileMenu()">CONTACT</a>
+  <a href="#memberships" class="mobile-cta"  onclick="closeMobileMenu()">JOIN NOW</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-horizon"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-edge"></div>
+  <div id="hero-image-wrapper">
+    <img src="uploads/athlete-transparent.png" alt="">
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Burlington · Co. Clare · Ireland</p>
+      <div class="hero-headline">
+        <div class="white">WHERE</div>
+        <div class="orange" style="font-family:'College',sans-serif">PROS</div>
+        <div class="white">ARE MADE.</div>
+      </div>
+      <p class="hero-sub">Munster's premier fitness facility. Fully equipped, open 7 days. Built for those who take their training seriously.</p>
+      <div class="hero-btns">
+        <a href="#memberships" class="btn-primary">JOIN NOW</a>
+        <a href="#classes"     class="btn-outline">VIEW CLASSES</a>
+      </div>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Members</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Days a Week</div></div>
+    <div class="stat"><div class="stat-num">6AM</div><div class="stat-label">Opens Weekdays</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Committed</div></div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-grid">
+      <div>
+        <p class="section-eyebrow">About Us</p>
+        <h2 class="section-heading" style="margin:0 0 28px">MUNSTER'S PREMIER FITNESS FACILITY</h2>
+        <p class="about-desc">Located in Gillogue Office Park, Burlington, Co. Clare, Munster Pro Fitness is a fully-equipped gym built for people who are serious about their results.</p>
+        <p class="about-desc about-desc-2">Whether you're just getting started or already performing at a high level, our facility has everything you need to push harder and go further — all under one roof.</p>
+        <div class="feature-list">
+          <div class="feature-item"><div class="dot"></div><span>Full free weights area &amp; cable machines</span></div>
+          <div class="feature-item"><div class="dot"></div><span>Functional training &amp; cardio zones</span></div>
+          <div class="feature-item"><div class="dot"></div><span>Boxing area &amp; group fitness classes</span></div>
+          <div class="feature-item"><div class="dot"></div><span>Personal training available</span></div>
+          <div class="feature-item"><div class="dot"></div><span>Free parking on site</span></div>
+        </div>
+      </div>
+      <div class="about-img-wrap">
+        <img src="uploads/481264326_1176903254442653_4479082918121085074_n.jpg" alt="Munster Pro Fitness gym floor">
+        <div class="about-img-border"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MEMBERSHIPS ═══ -->
+<section id="memberships">
+  <div class="memberships-inner">
+    <div class="memberships-header">
+      <p class="section-eyebrow">Plans &amp; Pricing</p>
+      <h2 class="section-heading">CHOOSE YOUR PLAN</h2>
+      <div class="type-toggle">
+        <button class="toggle-btn active" id="btn-standard" onclick="setMemberType('standard')">Standard</button>
+        <button class="toggle-btn"        id="btn-student"  onclick="setMemberType('student')">Student</button>
+      </div>
+    </div>
+    <div class="pricing-grid" id="pricing-grid"></div>
+    <p class="pricing-note">Full gym access included · Student ID required for student rates · Online payment via Stripe or PayPal</p>
+  </div>
+</section>
+
+<!-- ═══ CLASSES ═══ -->
+<section id="classes">
+  <div class="classes-inner">
+    <div class="classes-header">
+      <div>
+        <p class="section-eyebrow">Group Fitness</p>
+        <h2 class="section-heading">CLASS SCHEDULE</h2>
+      </div>
+      <p class="classes-note">Spots are limited. Book in advance to secure your place.</p>
+    </div>
+    <div class="classes-grid" id="classes-grid"></div>
+    <div class="classes-notice">
+      <div class="notice-bar"></div>
+      <div>
+        <p class="notice-title">More classes being added regularly</p>
+        <p class="notice-text">Follow <a href="https://instagram.com/munster_pro_fitness" target="_blank" rel="noopener">@munster_pro_fitness</a> on Instagram for updates and new class announcements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div>
+        <p class="section-eyebrow">Get In Touch</p>
+        <h2 class="section-heading contact-heading">FIND US</h2>
+        <div class="contact-block">
+          <p class="contact-label">Address</p>
+          <p class="contact-address">Old Burlington Estate<br>Gillogue Office Park<br>Corbally Rd, Gilloge<br>Limerick, Co. Clare<br>V94 EYK6</p>
+        </div>
+        <div class="contact-block">
+          <p class="contact-label">Opening Hours</p>
+          <div class="hours-row"><span class="day">Monday — Friday</span><span class="time">6:00 AM — 9:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday — Sunday</span><span class="time">9:00 AM — 4:00 PM</span></div>
+        </div>
+        <div class="contact-block">
+          <p class="contact-label">Contact</p>
+          <div class="contact-links">
+            <a href="tel:0838715478">083 871 5478</a>
+            <a href="mailto:info@munsterprofitness.ie">info@munsterprofitness.ie</a>
+            <a href="https://www.munsterprofitness.ie" target="_blank" rel="noopener">www.munsterprofitness.ie</a>
+          </div>
+        </div>
+        <div class="contact-block">
+          <p class="contact-label">Social</p>
+          <div class="social-links">
+            <a href="https://instagram.com/munster_pro_fitness" target="_blank" rel="noopener" class="social-link">Instagram</a>
+            <a href="https://facebook.com/munsterprofitness"    target="_blank" rel="noopener" class="social-link">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=V94+EYK6&output=embed"
+          title="Munster Pro Fitness Location"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <p class="section-eyebrow">Support</p>
+      <h2 class="section-heading">FREQUENTLY ASKED</h2>
+    </div>
+    <div id="faq-list"></div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="uploads/logo-hires.png" alt="Munster Pro Fitness">
+        <span class="footer-logo-text">MUNSTER <span>PRO</span> FITNESS</span>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#memberships">Memberships</a>
+        <a href="#classes">Classes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Munster Pro Fitness. All rights reserved. Burlington, Co. Clare, Ireland.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/munster_pro_fitness" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://facebook.com/munsterprofitness"    target="_blank" rel="noopener">Facebook</a>
+        <a href="mailto:info@munsterprofitness.ie">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ MEMBERSHIP MODAL ═══ -->
+<div id="member-modal" class="modal-overlay" onclick="closeMemberModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <div>
+        <p class="modal-eyebrow">Munster Pro Fitness</p>
+        <h3 class="modal-title" id="modal-period"></h3>
+        <p class="modal-price" id="modal-price"></p>
+      </div>
+      <button class="modal-close" onclick="closeMemberModal()">×</button>
+    </div>
+    <!-- Success state -->
+    <div id="member-success" class="modal-success" style="display:none">
+      <div class="success-icon">✓</div>
+      <h3 class="success-title">YOU'RE IN!</h3>
+      <p class="success-text" id="member-success-text"></p>
+      <button class="form-submit" onclick="closeMemberModal()" style="max-width:200px;margin:0 auto">CLOSE</button>
+    </div>
+    <!-- Form state -->
+    <div id="member-form-wrap" class="modal-body">
+      <p class="purpose-section-label">Membership Type</p>
+      <div class="purpose-toggle">
+        <button class="purpose-btn active" id="purpose-new"    onclick="setPurpose('new')">New Member</button>
+        <button class="purpose-btn"        id="purpose-renew"  onclick="setPurpose('renewal')">Renewal</button>
+      </div>
+      <form id="member-form" onsubmit="submitMembership(event)" class="modal-form">
+        <div class="form-group">
+          <label class="form-label" for="m-name">Full Name *</label>
+          <input class="form-input" type="text" id="m-name" required placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="m-email">Email Address *</label>
+          <input class="form-input" type="email" id="m-email" required placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="m-phone">Phone Number *</label>
+          <input class="form-input" type="tel" id="m-phone" required placeholder="083 000 0000">
+        </div>
+        <p class="form-note">Our team will contact you to confirm and complete payment via Stripe or PayPal.</p>
+        <button type="submit" class="form-submit">CONFIRM MEMBERSHIP</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CLASS BOOKING MODAL ═══ -->
+<div id="class-modal" class="modal-overlay" onclick="closeClassModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <div>
+        <div class="class-modal-badge" id="class-modal-badge"></div>
+        <h3 class="modal-title" id="class-modal-name"></h3>
+        <p class="class-modal-sub" id="class-modal-sub"></p>
+      </div>
+      <button class="modal-close" onclick="closeClassModal()">×</button>
+    </div>
+    <!-- Success state -->
+    <div id="class-success" class="modal-success" style="display:none">
+      <div class="success-icon">✓</div>
+      <h3 class="success-title">SPOT RESERVED!</h3>
+      <p class="success-text" id="class-success-text"></p>
+      <button class="form-submit" onclick="closeClassModal()" style="max-width:200px;margin:0 auto">DONE</button>
+    </div>
+    <!-- Form state -->
+    <div id="class-form-wrap" class="modal-body">
+      <form id="class-form" onsubmit="submitClassBooking(event)" class="modal-form">
+        <div class="form-group">
+          <label class="form-label" for="c-name">Full Name *</label>
+          <input class="form-input" type="text" id="c-name" required placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="c-email">Email Address *</label>
+          <input class="form-input" type="email" id="c-email" required placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="c-phone">Phone Number *</label>
+          <input class="form-input" type="tel" id="c-phone" required placeholder="083 000 0000">
+        </div>
+        <button type="submit" class="form-submit" style="margin-top:20px">RESERVE MY SPOT</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── DATA ── */
+  const PRICING = {
+    standard: [
+      { period: '1 Month',   price: 50,  perMonth: null,       best: false },
+      { period: '3 Months',  price: 120, perMonth: '€40 / mo', best: false },
+      { period: '6 Months',  price: 230, perMonth: '€38 / mo', best: false },
+      { period: '12 Months', price: 425, perMonth: '€35 / mo', best: true  },
+    ],
+    student: [
+      { period: '1 Month',   price: 45,  perMonth: null,       best: false },
+      { period: '3 Months',  price: 115, perMonth: '€38 / mo', best: false },
+      { period: '6 Months',  price: 220, perMonth: '€37 / mo', best: false },
+      { period: '12 Months', price: 380, perMonth: '€32 / mo', best: true  },
+    ],
+  };
+
+  const CLASSES = [
+    { id: 1, day: 'WED', dayFull: 'Wednesday', time: '6:30 PM', name: 'Core & Strength',  duration: '60 min', spots: 15 },
+    { id: 2, day: 'SAT', dayFull: 'Saturday',  time: '9:30 AM', name: 'Circuit Training', duration: '60 min', spots: 18 },
+    { id: 3, day: 'SAT', dayFull: 'Saturday',  time: '11:00 AM', name: 'Zumba',           duration: '60 min', spots: 20 },
+  ];
+
+  const FAQS = [
+    { q: 'How do I sign up for a membership?',
+      a: 'Click "Join Now" on any plan, fill in your details, and our team will be in touch to complete your payment via Stripe or PayPal. You can also visit us in person at Gillogue Office Park, Corbally Rd, Co. Clare.' },
+    { q: 'How do I renew my existing membership?',
+      a: "Click \"Join Now\" on the plan you want, select \"Renewal\" in the form, and submit. We'll process your renewal and confirm with you directly." },
+    { q: 'Can I freeze or pause my membership?',
+      a: "Yes — membership freezes are available for medical reasons or extended travel. Email info@munsterprofitness.ie or call 083 871 5478 and we'll sort it for you." },
+    { q: 'Is there parking at the gym?',
+      a: 'Yes, free parking is available directly at the Gillogue Office Park complex.' },
+    { q: 'Do I need to book classes in advance?',
+      a: 'We strongly recommend booking in advance as class spots are limited. Walk-ins are welcome subject to availability.' },
+    { q: 'What equipment is available?',
+      a: "We're fully equipped with free weights, cable machines, cardio zone, functional training area, boxing equipment, and a dedicated group fitness studio." },
+    { q: 'Do you offer personal training?',
+      a: 'Yes, one-to-one personal training sessions are available. Contact us at 083 871 5478 or info@munsterprofitness.ie to discuss your goals.' },
+  ];
+
+  /* ── STATE ── */
+  let memberType = 'standard';
+  let memberPurpose = 'new';
+  let selectedPlan = null;
+  let selectedClass = null;
+  let openFaq = null;
+
+  /* ── NAV SCROLL ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── MOBILE MENU ── */
+  function openMobileMenu()  { document.getElementById('mobile-menu').classList.add('open'); }
+  function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+  /* ── MEMBERSHIP TYPE ── */
+  function setMemberType(type) {
+    memberType = type;
+    document.getElementById('btn-standard').classList.toggle('active', type === 'standard');
+    document.getElementById('btn-student').classList.toggle('active', type === 'student');
+    renderPricing();
+  }
+
+  function renderPricing() {
+    const grid = document.getElementById('pricing-grid');
+    grid.innerHTML = PRICING[memberType].map(p => `
+      <div class="price-card${p.best ? ' best' : ''}" onclick="openMemberModal(${JSON.stringify(p).replace(/"/g, '&quot;')})">
+        <div class="best-badge">BEST VALUE</div>
+        <p class="price-period">${p.period}</p>
+        <div class="price-amount">
+          <span class="price-currency">€</span>
+          <span class="price-num">${p.price}</span>
+        </div>
+        <p class="price-per">${p.perMonth || '&nbsp;'}</p>
+        <button class="price-btn">JOIN NOW</button>
+      </div>
+    `).join('');
+  }
+
+  /* ── CLASSES ── */
+  function renderClasses() {
+    const grid = document.getElementById('classes-grid');
+    grid.innerHTML = CLASSES.map(c => `
+      <div class="class-card">
+        <div class="class-top"></div>
+        <div class="class-body">
+          <div class="class-day-badge">${c.day}</div>
+          <h3 class="class-name">${c.name}</h3>
+          <div class="class-meta">
+            <span>${c.time}</span>
+            <span class="sep">·</span>
+            <span>${c.duration}</span>
+          </div>
+          <div class="class-footer">
+            <span class="class-spots">${c.spots} spots available</span>
+            <button class="book-btn" onclick="openClassModal(${c.id})">BOOK</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── FAQ ── */
+  function renderFaqs() {
+    const list = document.getElementById('faq-list');
+    list.innerHTML = FAQS.map((f, i) => `
+      <div class="faq-item${openFaq === i ? ' open' : ''}" id="faq-${i}">
+        <button class="faq-btn" onclick="toggleFaq(${i})">
+          <span class="faq-q">${f.q}</span>
+          <span class="faq-chevron">${openFaq === i ? '−' : '+'}</span>
+        </button>
+        <div class="faq-answer">${f.a}</div>
+      </div>
+    `).join('');
+  }
+
+  function toggleFaq(i) {
+    openFaq = openFaq === i ? null : i;
+    renderFaqs();
+  }
+
+  /* ── MEMBERSHIP MODAL ── */
+  function openMemberModal(plan) {
+    selectedPlan = plan;
+    memberPurpose = 'new';
+    document.getElementById('modal-period').textContent = plan.period;
+    document.getElementById('modal-price').textContent = '€' + plan.price;
+    document.getElementById('member-success').style.display = 'none';
+    document.getElementById('member-form-wrap').style.display = 'block';
+    document.getElementById('member-form').reset();
+    setPurpose('new');
+    document.getElementById('member-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMemberModal(e) {
+    if (e && e.target !== document.getElementById('member-modal')) return;
+    document.getElementById('member-modal').classList.remove('open');
+    document.body.style.overflow = '';
+    selectedPlan = null;
+  }
+
+  function setPurpose(p) {
+    memberPurpose = p;
+    document.getElementById('purpose-new').classList.toggle('active', p === 'new');
+    document.getElementById('purpose-renew').classList.toggle('active', p === 'renewal');
+  }
+
+  function submitMembership(e) {
+    e.preventDefault();
+    const label = memberPurpose === 'new' ? 'New Membership' : 'Membership Renewal';
+    document.getElementById('member-success-text').textContent =
+      `We've received your ${label} request. Our team will be in touch shortly to confirm and complete your payment.`;
+    document.getElementById('member-form-wrap').style.display = 'none';
+    document.getElementById('member-success').style.display = 'block';
+  }
+
+  /* ── CLASS MODAL ── */
+  function openClassModal(id) {
+    const cls = CLASSES.find(c => c.id === id);
+    selectedClass = cls;
+    document.getElementById('class-modal-badge').textContent = `${cls.dayFull} · ${cls.time}`;
+    document.getElementById('class-modal-name').textContent = cls.name;
+    document.getElementById('class-modal-sub').textContent = `${cls.duration} · ${cls.spots} spots available`;
+    document.getElementById('class-success').style.display = 'none';
+    document.getElementById('class-form-wrap').style.display = 'block';
+    document.getElementById('class-form').reset();
+    document.getElementById('class-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeClassModal(e) {
+    if (e && e.target !== document.getElementById('class-modal')) return;
+    document.getElementById('class-modal').classList.remove('open');
+    document.body.style.overflow = '';
+    selectedClass = null;
+  }
+
+  function submitClassBooking(e) {
+    e.preventDefault();
+    document.getElementById('class-success-text').textContent =
+      `You're booked in for ${selectedClass.name} on ${selectedClass.dayFull} at ${selectedClass.time}. Confirmation will be sent to your email.`;
+    document.getElementById('class-form-wrap').style.display = 'none';
+    document.getElementById('class-success').style.display = 'block';
+  }
+
+  /* ── HERO PARTICLES ── */
+  (function initParticles() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const particles = Array.from({ length: 65 }, () => ({
+      x:       Math.random() * canvas.width,
+      y:       Math.random() * canvas.height,
+      r:       Math.random() * 1.6 + 0.3,
+      speed:   Math.random() * 0.45 + 0.12,
+      life:    Math.random(),
+      maxLife: Math.random() * 0.5 + 0.5,
+      drift:   (Math.random() - 0.5) * 0.28,
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        const opacity = (p.life / p.maxLife) * 0.65;
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+        grad.addColorStop(0,   `rgba(255,150,40,${opacity})`);
+        grad.addColorStop(0.4, `rgba(240,124,30,${opacity * 0.6})`);
+        grad.addColorStop(1,   `rgba(200,80,0,0)`);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+        p.y    -= p.speed;
+        p.x    += p.drift;
+        p.life -= 0.0025;
+        if (p.life <= 0 || p.y < -20) {
+          p.x      = Math.random() * canvas.width;
+          p.y      = canvas.height + 10;
+          p.life   = p.maxLife;
+          p.speed  = Math.random() * 0.45 + 0.12;
+          p.r      = Math.random() * 1.6 + 0.3;
+          p.drift  = (Math.random() - 0.5) * 0.28;
+        }
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* ── INIT ── */
+  renderPricing();
+  renderClasses();
+  renderFaqs();
+</script>
+</body>
+</html>
