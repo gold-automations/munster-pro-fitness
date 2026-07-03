@@ -566,15 +566,64 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 800px) {
+      /* Nav */
       #desktop-nav-links { display: none !important; }
       #nav-cta { display: none !important; }
       #hamburger { display: flex !important; }
+      #nav { padding: 0 20px; }
+
+      /* Hero */
       #hero-image-wrapper { display: none !important; }
-      #nav { padding: 0 24px; }
-      .hero-content { left: 0; width: 100%; padding: 0 24px; }
-      .hero-text { padding: 0; width: 100%; }
-      .about-inner, .memberships-inner, .classes-inner, .contact-inner, .faq-inner { padding: 0 24px; }
-      footer { padding: 48px 24px 32px; }
+      #home { height: auto; min-height: 100svh; justify-content: flex-start; padding-top: 100px; padding-bottom: 100px; }
+      .hero-content {
+        position: relative; top: auto; left: auto;
+        width: 100%; height: auto;
+        padding: 0 24px;
+      }
+      .hero-text { padding: 0; width: 100%; height: auto; }
+      .hero-sub { font-size: 15px; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; padding: 16px; width: 100%; }
+
+      /* Stats bar */
+      .stats-bar { position: relative; }
+      .stat { padding: 16px 8px; }
+      .stat-num { font-size: 24px; }
+      .stat-label { font-size: 9px; letter-spacing: 1px; }
+
+      /* Sections */
+      #about { padding: 72px 0; }
+      .about-inner, .memberships-inner, .classes-inner, .contact-inner, .faq-inner { padding: 0 20px; }
+      .about-grid { gap: 40px; }
+      .about-img-border { display: none; }
+
+      /* Memberships */
+      #memberships { padding: 72px 0; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .price-num { font-size: 52px; }
+
+      /* Classes */
+      #classes { padding: 72px 0; }
+      .classes-header { flex-direction: column; align-items: flex-start; }
+      .classes-note { text-align: left; max-width: 100%; }
+
+      /* Contact */
+      #contact { padding: 72px 0; }
+      .contact-grid { gap: 48px; }
+      .map-wrap { height: 300px; }
+
+      /* FAQ */
+      #faq { padding: 72px 0; }
+
+      /* Footer */
+      footer { padding: 48px 20px 32px; }
+      .footer-top { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .nav-logo-text { font-size: 14px; letter-spacing: 1.5px; }
     }
   </style>
 </head>
