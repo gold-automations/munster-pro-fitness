@@ -574,19 +574,19 @@
 
       /* Hero */
       #hero-image-wrapper { display: none !important; }
-      #home { height: auto; min-height: 100svh; justify-content: flex-start; padding-top: 100px; padding-bottom: 100px; }
+      #home { height: 100svh; min-height: 600px; justify-content: flex-start; }
       .hero-content {
         position: relative; top: auto; left: auto;
         width: 100%; height: auto;
-        padding: 0 24px;
+        padding: 110px 24px 90px;
       }
       .hero-text { padding: 0; width: 100%; height: auto; }
-      .hero-sub { font-size: 15px; }
+      .hero-headline div { font-size: 40px; }
+      .hero-sub { font-size: 15px; max-width: 100%; margin-top: 16px; margin-bottom: 24px; }
       .hero-btns { flex-direction: column; }
-      .btn-primary, .btn-outline { text-align: center; padding: 16px; width: 100%; }
+      .btn-primary, .btn-outline { text-align: center; padding: 16px; width: 100%; box-sizing: border-box; }
 
-      /* Stats bar */
-      .stats-bar { position: relative; }
+      /* Stats bar — keep pinned to bottom */
       .stat { padding: 16px 8px; }
       .stat-num { font-size: 24px; }
       .stat-label { font-size: 9px; letter-spacing: 1px; }
