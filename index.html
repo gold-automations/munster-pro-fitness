@@ -574,11 +574,11 @@
 
       /* Hero */
       #hero-image-wrapper { display: none !important; }
-      #home { height: 100svh; min-height: 600px; justify-content: flex-start; }
+      #home { height: auto; min-height: unset; justify-content: flex-start; }
       .hero-content {
         position: relative; top: auto; left: auto;
         width: 100%; height: auto;
-        padding: 110px 24px 90px;
+        padding: 110px 24px 32px;
       }
       .hero-text { padding: 0; width: 100%; height: auto; }
       .hero-headline div { font-size: 40px; }
@@ -586,7 +586,8 @@
       .hero-btns { flex-direction: column; }
       .btn-primary, .btn-outline { text-align: center; padding: 16px; width: 100%; box-sizing: border-box; }
 
-      /* Stats bar — keep pinned to bottom */
+      /* Stats bar — flows after hero content on mobile */
+      .stats-bar { position: relative; }
       .stat { padding: 16px 8px; }
       .stat-num { font-size: 24px; }
       .stat-label { font-size: 9px; letter-spacing: 1px; }
